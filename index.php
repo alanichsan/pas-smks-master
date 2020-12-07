@@ -35,40 +35,49 @@
 </button>
     </div>
 
-    <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-primary">
-        <h5 class="modal-title text-light" id="exampleModalLongTitle">Tambah Karyawan</h5>
-        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body p-3">
-      
-                <div class="form-group">
-                    <label for="formGroupExampleInput">name</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="name">
+<div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-light" id="exampleModalLongTitle">Tambah Karyawan</h5>
+                <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="create.php" method="post">
+                <div class="modal-body p-3">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" placeholder="Address" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="salary">Salary</label>
+                        <input type="text" class="form-control" id="salary" placeholder="Salary" name="salary">
+                    </div>
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <input type="text" class="form-control" id="department" placeholder="Department" name="department">
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Position</label>
+                        <input type="text" class="form-control" id="position" placeholder="Position" name="position">
+                    </div>
+                    <div class="form-group">
+                        <label for="allowance">Allowance (tunjangan)</label>
+                        <input type="text" class="form-control" id="allowance" placeholder="allowance (tunjangan)" name="allowance">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="formGroupExampleInput2">Department</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="department">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" name="submit">Save changes</button>
                 </div>
-                <div class="form-group">
-                    <label for="formGroupExampleInput2">Position</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="position">
-                </div>
-                <div class="form-group">
-                    <label for="formGroupExampleInput2">Allowance (tunjangan)</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="allowance (tunjangan)">
-                </div>
+            </form>
+        </div>
     </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
 </div>
 
     

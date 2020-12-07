@@ -96,7 +96,7 @@
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                         <div class="modal-header bg-primary">
-                            <h5 class="modal-title text-light" id="exampleModalLongTitle">Tambah Karyawan</h5>
+                            <h5 class="modal-title text-light" id="exampleModalLongTitle">Edit Karyawan</h5>
                             <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -154,11 +154,12 @@
             <td>none</td>
             <td> 
                 <a href="" class="badge badge-warning text-light" data-toggle="modal" data-target="#edit">edit</a>
+                                <!-- Modal edit -->
                 <div class="modal fade bd-example-modal-lg" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                         <div class="modal-header bg-primary">
-                            <h5 class="modal-title text-light" id="exampleModalLongTitle">Tambah Karyawan</h5>
+                            <h5 class="modal-title text-light" id="exampleModalLongTitle">Edit Karyawan</h5>
                             <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -190,7 +191,7 @@
                     </div>
 
                 <a href="" class="badge badge-danger text-light" data-toggle="modal" data-target="#delete">delete</a>
-                <!-- Modal -->
+                <!-- Modal delete -->
                         <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
@@ -220,7 +221,7 @@
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                         <div class="modal-header bg-primary">
-                            <h5 class="modal-title text-light" id="exampleModalLongTitle">Tambah Karyawan</h5>
+                            <h5 class="modal-title text-light" id="exampleModalLongTitle">Edit Karyawan</h5>
                             <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>

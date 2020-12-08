@@ -83,10 +83,10 @@
                         </thead>
                         <tbody>
                             <?php if(mysqli_num_rows($result) > 0) {
-                                $id=1; 
+                                $iduseer=1; 
                                     while($row = mysqli_fetch_array($result)) { ?>
                                         <tr>
-                                            <td class="bg-primary text-light"><?= $id++; ?></td>
+                                            <td class="bg-primary text-light"><?= $iduseer++; ?></td>
                                             <td class="text-center"><?= $row['name']; ?></td>
                                             <td class="text-center"><?= $row['address']; ?></td>
                                             <td class="text-center"><?= $row['salary']; ?></td>

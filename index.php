@@ -131,8 +131,8 @@
                                                         </div>
                                                     </div>
 
-                                                    <a href="" class="badge badge-danger text-light" data-toggle="modal" data-target="#delete">delete</a>
-                                                    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                    <a href="" class="badge badge-danger text-light" data-toggle="modal" data-target="#delete<?= $id ?>">delete</a>
+                                                    <div class="modal fade" id="delete<?= $id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">

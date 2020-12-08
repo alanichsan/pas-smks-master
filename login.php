@@ -1,3 +1,29 @@
+<?php 
+    require_once 'db.php';
+    
+    session_start();
+
+    if(isset($_SESSION['username'])) header('Location: index.php');
+
+    if(isset($_POST['username'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        if(!empty(trim($username)) && !empty(trim($password))) {
+            $username = mysqli_real_escape_string($link, $username);
+            $password = mysqli_real_escape_string($link, $password);
+
+            $query = "SELECT password FROM users WHERE username = '$username'";
+            $result = mysqli_fetch_assoc(mysqli_query($link, $query));
+
+            if(password_verify($password, $result['password'])) {
+                $_SESSION['username'] = $username;
+                header('Location: index.php');
+            }
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +60,7 @@
 
         <!-- Registeration Form -->
         <div class="col-md-7 col-lg-6 ml-auto">
-            <form action="#">
+            <form action="login.php" method="post">
                 <div class="row">
 
                     <!-- username -->
@@ -44,7 +70,7 @@
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
-                        <input id="username" type="text" name="username" placeholder="username" class="form-control bg-white border-left-0 border-md">
+                        <input id="username" type="text" name="username" placeholder="Username" class="form-control bg-white border-left-0 border-md">
                     </div>
 
                     <!-- Password -->
@@ -59,57 +85,56 @@
 
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-3">
-                        <a href="index.php" class="btn btn-primary btn-block py-2">
+                        <button type="submit" class="btn btn-primary btn-block py-2">
                             <span class="font-weight-bold">Create your account</span>
-                        </a>
+                        </button>
                     </div>
 
                     <!-- Already Registered -->
                     <div class="text-center w-100">
                         <p class="text-muted font-weight-bold">forgot the password? <a href="#forgot" class="text-primary ml-2" data-toggle="modal" data-target="#forgot">forgot</a></p>
                     </div>
-
-                    <!-- Modal  forgot the password-->
-                    <div class="modal fade" id="forgot" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header bg-primary">
-                            <h5 class="modal-title text-light" id="exampleModalLongTitle">forgot the password</h5>
-                            <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body p-5">
-                            <!-- Password -->
-                    <div class="input-group col-lg-12 mb-4">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-lock text-muted"></i>
-                            </span>
-                        </div>
-                        <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
-                    </div>
-
-                     <!-- confirm password -->
-                     <div class="input-group col-lg-12 mb-4">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-lock text-muted"></i>
-                            </span>
-                        </div>
-                        <input id="confirm password" type="password" name="confirm_password" placeholder="confirm password" class="form-control bg-white border-left-0 border-md">
-                    </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal  forgot the password-->
+<div class="modal fade" id="forgot" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-light" id="exampleModalLongTitle">forgot the password</h5>
+                <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-5">
+                <!-- Password -->
+            <div class="input-group col-lg-12 mb-4">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                        <i class="fa fa-lock text-muted"></i>
+                    </span>
+                </div>
+                <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
+            </div>
+
+                <!-- confirm password -->
+                <div class="input-group col-lg-12 mb-4">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                        <i class="fa fa-lock text-muted"></i>
+                    </span>
+                </div>
+                <input id="confirm password" type="password" name="confirm_password" placeholder="confirm password" class="form-control bg-white border-left-0 border-md">
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
         </div>
     </div>
 </div>

@@ -1,5 +1,7 @@
 <?php
     require_once 'db.php';
+
+    session_start();
     
     $query = "SELECT * FROM employees";
 
@@ -26,7 +28,11 @@
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
+                    <?php if(!isset($_SESSION['username'])) { ?>
                     <a href="login.php" class="nav-item nav-link btn btn-primary text-light px-3">Login</a>
+                    <?php } else { ?>
+                    <a href="logout.php" class="nav-item nav-link btn btn-primary text-light px-3">Logout</a>
+                    <?php } ?>
                 </div>
             </div>
         </nav>
@@ -35,9 +41,11 @@
     <div class="container">
         <div class="row mt-4 ">
             <div class="col">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-                    Tambah Karyawan
-                </button>
+                <?php if(isset($_SESSION['username'])) { ?>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                        Tambah Karyawan
+                    </button>
+                <?php } ?>
                 <div class="my-4">
                     <table class="table table-hover">
                         <thead>
@@ -49,7 +57,9 @@
                                 <th>Department</th>
                                 <th>Position</th>
                                 <th>Allowance (Tunjangan)</th>
-                                <th>Action</th>
+                                <?php if(isset($_SESSION['username'])) { ?>
+                                    <th>Action</th>
+                                <?php } ?>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,81 +73,83 @@
                                             <td><?= $row['department']; ?></td>
                                             <td><?= $row['position']; ?></td>
                                             <td><?= $row['allowance']; ?></td>
-                                            <td> 
-                                                <?php 
-                                                    $id = $row['id'];
-                                                    $query = "SELECT * FROM employees WHERE id = $id";
+                                            <?php if(isset($_SESSION['username'])) { ?>
+                                                <td> 
+                                                    <?php 
+                                                        $id = $row['id'];
+                                                        $query = "SELECT * FROM employees WHERE id = $id";
 
-                                                    $employe = mysqli_query($link, $query);
-                                                ?>
-                                                <a href="" class="badge badge-warning text-light" data-toggle="modal" data-target="#edit<?= $id ?>">edit</a>
-                                                <div class="modal fade bd-example-modal-lg" id="edit<?= $id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                                    <div class="modal-dialog modal-lg" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header bg-primary">
-                                                                <h5 class="modal-title text-light" id="exampleModalLongTitle">Edit Karyawan</h5>
-                                                                <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form action="update.php?id=<?= $id ?>" method="post">
-                                                                <?php 
-                                                                    if(mysqli_num_rows($employe) != 0) {
-                                                                        $row = mysqli_fetch_array($employe); ?>
-                                                                        <div class="modal-body p-3">
-                                                                            <div class="form-group">
-                                                                                <label for="name">Name</label>
-                                                                                <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="<?= $row['name']; ?>">
+                                                        $employe = mysqli_query($link, $query);
+                                                    ?>
+                                                    <a href="" class="badge badge-warning text-light" data-toggle="modal" data-target="#edit<?= $id ?>">edit</a>
+                                                    <div class="modal fade bd-example-modal-lg" id="edit<?= $id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-primary">
+                                                                    <h5 class="modal-title text-light" id="exampleModalLongTitle">Edit Karyawan</h5>
+                                                                    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form action="update.php?id=<?= $id ?>" method="post">
+                                                                    <?php 
+                                                                        if(mysqli_num_rows($employe) != 0) {
+                                                                            $row = mysqli_fetch_array($employe); ?>
+                                                                            <div class="modal-body p-3">
+                                                                                <div class="form-group">
+                                                                                    <label for="name">Name</label>
+                                                                                    <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="<?= $row['name']; ?>">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="address">Address</label>
+                                                                                    <input type="text" class="form-control" id="address" placeholder="Address" name="address" value="<?= $row['address']; ?>">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="salary">Salary</label>
+                                                                                    <input type="text" class="form-control" id="salary" placeholder="Salary" name="salary" value="<?= $row['salary']; ?>">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="department">Department</label>
+                                                                                    <input type="text" class="form-control" id="department" placeholder="Department" name="department" value="<?= $row['department']; ?>">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="position">Position</label>
+                                                                                    <input type="text" class="form-control" id="position" placeholder="Position" name="position" value="<?= $row['position']; ?>">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="allowance">Allowance (Tunjangan)</label>
+                                                                                    <input type="text" class="form-control" id="allowance" placeholder="Allowance (Tunjangan)" name="allowance" value="<?= $row['allowance']; ?>">
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="form-group">
-                                                                                <label for="address">Address</label>
-                                                                                <input type="text" class="form-control" id="address" placeholder="Address" name="address" value="<?= $row['address']; ?>">
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                <button type="submit" class="btn btn-primary" name="submit">Save changes</button>
                                                                             </div>
-                                                                            <div class="form-group">
-                                                                                <label for="salary">Salary</label>
-                                                                                <input type="text" class="form-control" id="salary" placeholder="Salary" name="salary" value="<?= $row['salary']; ?>">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="department">Department</label>
-                                                                                <input type="text" class="form-control" id="department" placeholder="Department" name="department" value="<?= $row['department']; ?>">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="position">Position</label>
-                                                                                <input type="text" class="form-control" id="position" placeholder="Position" name="position" value="<?= $row['position']; ?>">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="allowance">Allowance (Tunjangan)</label>
-                                                                                <input type="text" class="form-control" id="allowance" placeholder="Allowance (Tunjangan)" name="allowance" value="<?= $row['allowance']; ?>">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                            <button type="submit" class="btn btn-primary" name="submit">Save changes</button>
-                                                                        </div>
-                                                                <?php } ?>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <a href="" class="badge badge-danger text-light" data-toggle="modal" data-target="#delete">delete</a>
-                                                <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body p-5">
-                                                                <img src="https://res.cloudinary.com/alanichsan/image/upload/v1607320923/detele_qkmy05.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
-                                                                <h3 class="text-center mt-5">Success Delete</h3>
-                                                                <a href="delete.php?id=<?= $id ?>" >Delete</a>
+                                                                    <?php } ?>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </td>
+
+                                                    <a href="" class="badge badge-danger text-light" data-toggle="modal" data-target="#delete">delete</a>
+                                                    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body p-5">
+                                                                    <img src="https://res.cloudinary.com/alanichsan/image/upload/v1607320923/detele_qkmy05.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
+                                                                    <h3 class="text-center mt-5">Success Delete</h3>
+                                                                    <a href="delete.php?id=<?= $id ?>" >Delete</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            <?php } ?>
                                         </tr>
                                     <?php }
                                 } ?>        

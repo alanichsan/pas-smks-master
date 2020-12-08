@@ -31,7 +31,26 @@
                     <?php if(!isset($_SESSION['username'])) { ?>
                     <a href="login.php" class="nav-item nav-link btn btn-primary text-light px-3">Login</a>
                     <?php } else { ?>
-                    <a href="logout.php" class="nav-item nav-link btn btn-primary text-light px-3">Logout</a>
+                    <a data-toggle="modal" data-target="#logout" class="nav-item nav-link btn btn-primary text-light px-3">Logout</a>
+                    <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body p-5">
+                                                                    <h1 class="text-center  mb-3 d-sm-none d-md-block ">Log Out ?</h1>
+                                                                    <img src="https://res.cloudinary.com/alanichsan/image/upload/v1607320923/login_chvtrh.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">no</button>
+                                                                    <a href="logout.php"  class="btn btn-warning text-light" name="submit">yes</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                    </div>
                     <?php } ?>
                 </div>
             </div>
@@ -42,7 +61,7 @@
         <div class="row mt-4 ">
             <div class="col">
                 <?php if(isset($_SESSION['username'])) { ?>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adddata">
                         Tambah Karyawan
                     </button>
                 <?php } ?>
@@ -51,28 +70,29 @@
                         <thead>
                             <tr>
                                 <th class="bg-primary text-light">#</th>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Salary</th>
-                                <th>Department</th>
-                                <th>Position</th>
-                                <th>Allowance (Tunjangan)</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Address</th>
+                                <th class="text-center">Salary</th>
+                                <th class="text-center">Department</th>
+                                <th class="text-center">Position</th>
+                                <th class="text-center">Allowance (Tunjangan)</th>
                                 <?php if(isset($_SESSION['username'])) { ?>
-                                    <th>Action</th>
+                                    <th class="text-center">Action</th>
                                 <?php } ?>
                             </tr>
                         </thead>
                         <tbody>
                             <?php if(mysqli_num_rows($result) > 0) {
+                                $id=1; 
                                     while($row = mysqli_fetch_array($result)) { ?>
                                         <tr>
-                                            <td class="bg-primary text-light">1</td>
-                                            <td><?= $row['name']; ?></td>
-                                            <td><?= $row['address']; ?></td>
-                                            <td><?= $row['salary']; ?></td>
-                                            <td><?= $row['department']; ?></td>
-                                            <td><?= $row['position']; ?></td>
-                                            <td><?= $row['allowance']; ?></td>
+                                            <td class="bg-primary text-light"><?= $id++; ?></td>
+                                            <td class="text-center"><?= $row['name']; ?></td>
+                                            <td class="text-center"><?= $row['address']; ?></td>
+                                            <td class="text-center"><?= $row['salary']; ?></td>
+                                            <td class="text-center"><?= $row['department']; ?></td>
+                                            <td class="text-center"><?= $row['position']; ?></td>
+                                            <td class="text-center"><?= $row['allowance']; ?></td>
                                             <?php if(isset($_SESSION['username'])) { ?>
                                                 <td> 
                                                     <?php 
@@ -81,7 +101,7 @@
 
                                                         $employe = mysqli_query($link, $query);
                                                     ?>
-                                                    <a href="" class="badge badge-warning text-light" data-toggle="modal" data-target="#edit<?= $id ?>">edit</a>
+                                                    <a href="" class="badge badge-warning text-light text-center" data-toggle="modal" data-target="#edit<?= $id ?>">edit</a>
                                                     <div class="modal fade bd-example-modal-lg" id="edit<?= $id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                                         <div class="modal-dialog modal-lg" role="document">
                                                             <div class="modal-content">
@@ -131,7 +151,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <a href="" class="badge badge-danger text-light" data-toggle="modal" data-target="#delete<?= $id ?>">delete</a>
+                                                    <a href="" class="badge badge-danger text-light text-center" data-toggle="modal" data-target="#delete<?= $id ?>">delete</a>
                                                     <div class="modal fade" id="delete<?= $id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
@@ -141,9 +161,12 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body p-5">
+                                                                    <h1 class="text-center  mb-3 d-sm-none d-md-block ">Delete ?</h1>
                                                                     <img src="https://res.cloudinary.com/alanichsan/image/upload/v1607320923/detele_qkmy05.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
-                                                                    <h3 class="text-center mt-5">Success Delete</h3>
-                                                                    <a href="delete.php?id=<?= $id ?>" >Delete</a>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">no</button>
+                                                                    <a href="delete.php?id=<?= $id ?>"  class="btn btn-danger" name="submit">yes</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -160,7 +183,7 @@
         </div>
     </div>
 
-    <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="adddata" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-primary">

@@ -86,55 +86,16 @@
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-3">
                         <button type="submit" class="btn btn-primary btn-block py-2">
-                            <span class="font-weight-bold">Create your account</span>
+                            <span class="font-weight-bold">Login</span>
                         </button>
                     </div>
 
                     <!-- Already Registered -->
                     <div class="text-center w-100">
-                        <p class="text-muted font-weight-bold">forgot the password? <a href="#forgot" class="text-primary ml-2" data-toggle="modal" data-target="#forgot">forgot</a></p>
+                        <a href="index.php" class="text-primary nav-link">go to <strong>Dashboard</strong> <i class="fa fa-arrow-right"></i></a>
                     </div>
                 </div>
             </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal  forgot the password-->
-<div class="modal fade" id="forgot" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-primary">
-                <h5 class="modal-title text-light" id="exampleModalLongTitle">forgot the password</h5>
-                <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body p-5">
-                <!-- Password -->
-            <div class="input-group col-lg-12 mb-4">
-                <div class="input-group-prepend">
-                    <span class="input-group-text bg-white px-4 border-md border-right-0">
-                        <i class="fa fa-lock text-muted"></i>
-                    </span>
-                </div>
-                <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
-            </div>
-
-                <!-- confirm password -->
-                <div class="input-group col-lg-12 mb-4">
-                <div class="input-group-prepend">
-                    <span class="input-group-text bg-white px-4 border-md border-right-0">
-                        <i class="fa fa-lock text-muted"></i>
-                    </span>
-                </div>
-                <input id="confirm password" type="password" name="confirm_password" placeholder="confirm password" class="form-control bg-white border-left-0 border-md">
-            </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
         </div>
     </div>
 </div>

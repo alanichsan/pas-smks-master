@@ -77,7 +77,7 @@
                                 <th class="text-center">Position</th>
                                 <th class="text-center">Allowance (Tunjangan)</th>
                                 <?php if(isset($_SESSION['username'])) { ?>
-                                    <th class="text-center">Action</th>
+                                    <th>Action</th>
                                 <?php } ?>
                             </tr>
                         </thead>

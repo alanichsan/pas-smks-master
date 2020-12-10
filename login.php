@@ -52,7 +52,7 @@
 <div class="container">
     <div class="row py-5 mt-4 align-items-center">
         <!-- For Demo Purpose -->
-        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0 text-center">
             <img src="https://res.cloudinary.com/alanichsan/image/upload/v1607320923/login_chvtrh.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
             <h1>Login Dashboard</h1>
             <p class="font-italic text-muted mb-0">login using the username and password you used</p>

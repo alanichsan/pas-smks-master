@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home - Sistem Manajemen Karyawan Sederhana</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -33,23 +33,23 @@
                     <?php } else { ?>
                     <a data-toggle="modal" data-target="#logout" class="nav-item nav-link btn btn-primary text-light px-3">Logout</a>
                     <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body p-5">
-                                                                    <h1 class="text-center  mb-3 d-sm-none d-md-block ">Log Out ?</h1>
-                                                                    <img src="https://res.cloudinary.com/alanichsan/image/upload/v1607320923/login_chvtrh.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">no</button>
-                                                                    <a href="logout.php"  class="btn btn-warning text-light" name="submit">yes</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body p-5">
+                                    <h1 class="text-center  mb-3 d-sm-none d-md-block ">Log Out ?</h1>
+                                    <img src="https://res.cloudinary.com/alanichsan/image/upload/v1607320923/login_chvtrh.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">no</button>
+                                    <a href="logout.php"  class="btn btn-warning text-light" name="submit">yes</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <?php } ?>
                 </div>
@@ -118,27 +118,27 @@
                                                                             <div class="modal-body p-3">
                                                                                 <div class="form-group">
                                                                                     <label for="name">Name</label>
-                                                                                    <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="<?= $row['name']; ?>">
+                                                                                    <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="<?= $row['name']; ?>" required>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="address">Address</label>
-                                                                                    <input type="text" class="form-control" id="address" placeholder="Address" name="address" value="<?= $row['address']; ?>">
+                                                                                    <input type="text" class="form-control" id="address" placeholder="Address" name="address" value="<?= $row['address']; ?>" required>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="salary">Salary</label>
-                                                                                    <input type="text" class="form-control" id="salary" placeholder="Salary" name="salary" value="<?= $row['salary']; ?>">
+                                                                                    <input type="number" class="form-control" id="salary" placeholder="Salary" name="salary" value="<?= $row['salary']; ?>" required>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="department">Department</label>
-                                                                                    <input type="text" class="form-control" id="department" placeholder="Department" name="department" value="<?= $row['department']; ?>">
+                                                                                    <input type="text" class="form-control" id="department" placeholder="Department" name="department" value="<?= $row['department']; ?>" required>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="position">Position</label>
-                                                                                    <input type="text" class="form-control" id="position" placeholder="Position" name="position" value="<?= $row['position']; ?>">
+                                                                                    <input type="text" class="form-control" id="position" placeholder="Position" name="position" value="<?= $row['position']; ?>" required>
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <label for="allowance">Allowance (Tunjangan)</label>
-                                                                                    <input type="text" class="form-control" id="allowance" placeholder="Allowance (Tunjangan)" name="allowance" value="<?= $row['allowance']; ?>">
+                                                                                    <input type="text" class="form-control" id="allowance" placeholder="Allowance (Tunjangan)" name="allowance" value="<?= $row['allowance']; ?>" required>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="modal-footer">
@@ -196,27 +196,27 @@
                     <div class="modal-body p-3">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+                            <input type="text" class="form-control" id="name" placeholder="Name" name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" class="form-control" id="address" placeholder="Address" name="address">
+                            <input type="text" class="form-control" id="address" placeholder="Address" name="address" required>
                         </div>
                         <div class="form-group">
                             <label for="salary">Salary</label>
-                            <input type="text" class="form-control" id="salary" placeholder="Salary" name="salary">
+                            <input type="number" class="form-control" id="salary" placeholder="Salary" name="salary" required>
                         </div>
                         <div class="form-group">
                             <label for="department">Department</label>
-                            <input type="text" class="form-control" id="department" placeholder="Department" name="department">
+                            <input type="text" class="form-control" id="department" placeholder="Department" name="department" required>
                         </div>
                         <div class="form-group">
                             <label for="position">Position</label>
-                            <input type="text" class="form-control" id="position" placeholder="Position" name="position">
+                            <input type="text" class="form-control" id="position" placeholder="Position" name="position" required>
                         </div>
                         <div class="form-group">
                             <label for="allowance">Allowance (tunjangan)</label>
-                            <input type="text" class="form-control" id="allowance" placeholder="Allowance (Tunjangan)" name="allowance">
+                            <input type="text" class="form-control" id="allowance" placeholder="Allowance (Tunjangan)" name="allowance" required>
                         </div>
                     </div>
                     <div class="modal-footer">

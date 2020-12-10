@@ -5,6 +5,9 @@
 
     if(isset($_SESSION['username'])) header('Location: index.php');
 
+    $invalidUsername = false;
+    $invalidPassword = false;
+
     if(isset($_POST['username'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -15,11 +18,12 @@
 
             $query = "SELECT password FROM users WHERE username = '$username'";
             $result = mysqli_fetch_assoc(mysqli_query($link, $query));
-
-            if(password_verify($password, $result['password'])) {
-                $_SESSION['username'] = $username;
-                header('Location: index.php');
-            }
+            if($result) {
+                if(password_verify($password, $result['password'])) {
+                    $_SESSION['username'] = $username;
+                    header('Location: index.php');
+                } else $invalidPassword = true;
+            } else $invalidUsername = true;
         }
     }
 ?>
@@ -63,25 +67,55 @@
             <form action="login.php" method="post">
                 <div class="row">
 
+                    <!-- Username -->
+                    <div class="col-lg-12 col-md-4 mb-3">
+                        <div class="input-group has-validation">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-user text-muted"></i>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control <?php if($invalidUsername) echo 'is-invalid' ?>" id="username" aria-describedby="inputGroupPrepend3 username-feedback" name="username" placeholder="Username" required>
+                            <div id="username-feedback" class="invalid-feedback">
+                                Invalid username
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="col-lg-12 col-md-4 mb-3">
+                        <div class="input-group has-validation">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-lock text-muted"></i>
+                                </span>
+                            </div>
+                            <input type="password" class="form-control <?php if($invalidPassword) echo 'is-invalid' ?>" id="password" aria-describedby="inputGroupPrepend3 password-feedback" name="password" placeholder="Password" required>
+                            <div id="password-feedback" class="invalid-feedback">
+                                Invalid password
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- username -->
-                    <div class="input-group col-lg-12 mb-4">
+                    <!-- <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
                         <input id="username" type="text" name="username" placeholder="Username" class="form-control bg-white border-left-0 border-md">
-                    </div>
+                    </div> -->
 
                     <!-- Password -->
-                    <div class="input-group col-lg-12 mb-4">
+                    <!-- <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
                         <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
-                    </div>
+                    </div> -->
 
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-3">
